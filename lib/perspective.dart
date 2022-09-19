@@ -9,7 +9,8 @@ class PerspectiveHomePage extends StatefulWidget {
 
 class _PerspectiveHomePage extends State<PerspectiveHomePage> {
   int _counter = 0;
-  final Offset _offset = const Offset(0.4, 0.7);
+  // final Offset _offset = const Offset(0.4, 0.7);
+  Offset _offset = Offset.zero; 
 
   void _incrementCounter() {
     setState(() {
@@ -19,14 +20,17 @@ class _PerspectiveHomePage extends State<PerspectiveHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Transform(
-      // Transform widget
+     return Transform(  // Transform widget
       transform: Matrix4.identity()
         ..setEntry(3, 2, 0.001) // perspective
-        ..rotateX(_offset.dy)
-        ..rotateY(_offset.dx),
+        ..rotateX(0.01 * _offset.dy) // changed
+        ..rotateY(-0.01 * _offset.dx), // changed
       alignment: FractionalOffset.center,
-      child: _defaultApp(context),
+      child: GestureDetector( // new
+        onPanUpdate: (details) => setState(() => _offset += details.delta),
+        onDoubleTap: () => setState(() => _offset = Offset.zero),
+        child: _defaultApp(context),
+      )
     );
   }
 

@@ -6,5 +6,9 @@ A new Flutter project.
 ![Screnshoot flutter_transform](images/01.png)
 
 ## Perspective on Flutter
-1. Transform Widget
+### Transform Widget
 ![Screnshoot flutter_transform](images/02.png)
+
+### GestureDetector widget
+![Screnshoot flutter_transform](images/03.png)
+<img src="images/03.gif" width="150"/>
